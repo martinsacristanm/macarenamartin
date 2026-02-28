@@ -1,3 +1,5 @@
+import bookCover from "@/assets/book-cover.jpg";
+
 const BookTeaser = () => {
   return (
     <section id="libro" className="py-24 md:py-32 px-6">
@@ -39,14 +41,8 @@ const BookTeaser = () => {
 
           {/* Visual element */}
           <div className="relative">
-            <div className="aspect-[3/4] bg-card border border-border rounded-sm flex items-center justify-center overflow-hidden relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-              <div className="text-center px-8 relative z-10">
-                <p className="font-display text-6xl text-primary/20 font-bold mb-4">?</p>
-                <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground">
-                  Portada por revelar
-                </p>
-              </div>
+            <div className="aspect-[3/4] bg-card border border-border rounded-sm overflow-hidden relative group">
+              <img src={bookCover} alt="Portada de El Legado de Auroa" className="w-full h-full object-cover" loading="lazy" />
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent group-hover:via-primary/70 transition-all duration-700" />
             </div>
           </div>
