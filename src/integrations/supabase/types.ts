@@ -14,7 +14,59 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      forum_questions: {
+        Row: {
+          author_name: string
+          created_at: string
+          id: string
+          question: string
+        }
+        Insert: {
+          author_name?: string
+          created_at?: string
+          id?: string
+          question: string
+        }
+        Update: {
+          author_name?: string
+          created_at?: string
+          id?: string
+          question?: string
+        }
+        Relationships: []
+      }
+      forum_replies: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          question_id: string
+        }
+        Insert: {
+          author_name?: string
+          content: string
+          created_at?: string
+          id?: string
+          question_id: string
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_replies_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "forum_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
