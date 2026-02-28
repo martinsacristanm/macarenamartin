@@ -7,7 +7,7 @@ const Navbar = () => {
         </a>
         <div className="flex gap-8 text-sm tracking-widest uppercase text-muted-foreground">
           <a href="/#libro" className="hover:text-primary transition-colors duration-300">Libro</a>
-          <a href="/#escritos" className="hover:text-primary transition-colors duration-300">Escritos</a>
+          
           <a href="/#sobre-mi" className="hover:text-primary transition-colors duration-300">Sobre mí</a>
           <a href="/notas" className="hover:text-primary transition-colors duration-300">Notas</a>
         </div>
