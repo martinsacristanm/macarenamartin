@@ -12,17 +12,13 @@ const AboutSection = () => {
 
         <div className="space-y-6 text-center">
           <p className="text-secondary-foreground leading-relaxed text-lg font-light">
-            Soy alguien que siempre ha vivido entre dos mundos: el de las ideas que no me dejan 
-            dormir y el de las palabras que intento usar para atraparlas.
+            He vivido siempre entre dos mundos:<br />
+            el de las ideas que no me dejan dormir<br />
+            y el de las palabras que intento usar para atraparlas.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Durante años escribí en silencio — relatos, ensayos, fragmentos sueltos que guardaba 
-            en cajones y carpetas olvidadas. Ahora, por fin, he decidido darles voz. Este sitio 
-            es el primer paso de un proyecto más grande: mi primer libro.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            No pretendo tener todas las respuestas. Solo quiero hacer las preguntas correctas y, 
-            quizá, encontrar a quienes se hacen las mismas.
+            Durante años escribí sin mostrarlo.<br />
+            Ahora he decidido compartir lo que antes guardaba.
           </p>
           
           <div className="pt-8">
