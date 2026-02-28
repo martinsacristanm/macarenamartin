@@ -138,10 +138,10 @@ const Notas = () => {
           )}
 
           {/* Chat area */}
-          <div className="bg-[hsl(220_10%_22%)] border border-[hsl(220_10%_30%)]/50 rounded-2xl p-4 md:p-6 shadow-2xl shadow-black/30">
-            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border/20">
-              <MessageCircle size={16} className="text-primary/60" />
-              <span className="text-xs tracking-widest uppercase text-muted-foreground/60">Conversaciones</span>
+          <div className="bg-white/95 rounded-2xl p-4 md:p-6 shadow-2xl shadow-black/20">
+            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-black/10">
+              <MessageCircle size={16} className="text-primary" />
+              <span className="text-xs tracking-widest uppercase text-black/40">Conversaciones</span>
             </div>
 
             {loading ? (
@@ -156,14 +156,14 @@ const Notas = () => {
             ) : (
               <div className="space-y-3">
                 {questions.map((q) => (
-                  <div key={q.id} className="bg-[hsl(220_10%_26%)] border border-[hsl(220_10%_32%)]/30 rounded-xl overflow-hidden hover:border-primary/20 transition-all duration-300">
+                  <div key={q.id} className="bg-black/5 border border-black/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-300">
                     <div className="p-5 cursor-pointer group" onClick={() => setExpandedQuestion(expandedQuestion === q.id ? null : q.id)}>
                       <div className="flex justify-between items-start gap-3">
                         <div className="flex-1 min-w-0">
-                          <p className="text-foreground leading-relaxed text-[15px]">{q.question}</p>
-                          <p className="text-xs text-muted-foreground/60 mt-2">{q.author_name} · {formatDate(q.created_at)}</p>
+                          <p className="text-black/80 leading-relaxed text-[15px]">{q.question}</p>
+                          <p className="text-xs text-primary/70 mt-2">{q.author_name} · {formatDate(q.created_at)}</p>
                         </div>
-                        <div className="flex items-center gap-2 text-muted-foreground/50 shrink-0 group-hover:text-muted-foreground transition-colors">
+                        <div className="flex items-center gap-2 text-black/30 shrink-0 group-hover:text-black/50 transition-colors">
                           {isAdmin && (
                             <button onClick={(e) => { e.stopPropagation(); deleteQuestion(q.id); }} className="hover:text-destructive transition-colors p-1" title="Eliminar pregunta">
                               <Trash2 size={13} />
@@ -179,25 +179,25 @@ const Notas = () => {
                     </div>
 
                     {expandedQuestion === q.id && (
-                      <div className="border-t border-border/20">
+                      <div className="border-t border-black/5">
                         {q.forum_replies?.length > 0 && (
                           <div className="p-4 space-y-3">
                             {q.forum_replies
                               .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
                               .map((r) => (
                                 <div key={r.id} className="flex gap-3 items-start group/reply">
-                                  <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5">
-                                    <span className="text-[10px] font-medium text-foreground/70 uppercase">{r.author_name.charAt(0)}</span>
+                                  <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <span className="text-[10px] font-medium text-primary uppercase">{r.author_name.charAt(0)}</span>
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <div className="bg-secondary/40 rounded-lg rounded-tl-sm px-3.5 py-2.5">
-                                      <p className="text-xs font-medium text-primary/80 mb-1">{r.author_name}</p>
-                                      <p className="text-foreground/90 text-sm leading-relaxed">{r.content}</p>
+                                    <div className="bg-black/5 rounded-lg rounded-tl-sm px-3.5 py-2.5">
+                                      <p className="text-xs font-medium text-primary mb-1">{r.author_name}</p>
+                                      <p className="text-black/70 text-sm leading-relaxed">{r.content}</p>
                                     </div>
-                                    <p className="text-[10px] text-muted-foreground/40 mt-1 px-1">{formatDate(r.created_at)}</p>
+                                    <p className="text-[10px] text-black/30 mt-1 px-1">{formatDate(r.created_at)}</p>
                                   </div>
                                   {isAdmin && (
-                                    <button onClick={() => deleteReply(r.id)} className="text-muted-foreground/20 hover:text-destructive transition-colors p-1 shrink-0 opacity-0 group-hover/reply:opacity-100" title="Eliminar respuesta">
+                                    <button onClick={() => deleteReply(r.id)} className="text-black/20 hover:text-destructive transition-colors p-1 shrink-0 opacity-0 group-hover/reply:opacity-100" title="Eliminar respuesta">
                                       <Trash2 size={11} />
                                     </button>
                                   )}
@@ -209,23 +209,23 @@ const Notas = () => {
                         {replyingTo === q.id ? (
                           <div className="p-4 pt-2 space-y-2">
                             <input type="text" placeholder="Tu nombre" required value={replyName} onChange={(e) => setReplyName(e.target.value)}
-                              className="w-full bg-background/40 border border-border/30 rounded-lg px-3.5 py-2 text-foreground placeholder:text-muted-foreground/50 text-sm focus:outline-none focus:border-primary/40 transition-colors" />
+                              className="w-full bg-black/5 border border-black/10 rounded-lg px-3.5 py-2 text-black/80 placeholder:text-black/30 text-sm focus:outline-none focus:border-primary/50 transition-colors" />
                             <div className="flex gap-2">
                               <textarea placeholder="Escribe tu respuesta..." value={replyContent} onChange={(e) => setReplyContent(e.target.value)} rows={1}
-                                className="flex-1 bg-background/40 border border-border/30 rounded-lg px-3.5 py-2 text-foreground placeholder:text-muted-foreground/50 text-sm focus:outline-none focus:border-primary/40 transition-colors resize-none" autoFocus />
+                                className="flex-1 bg-black/5 border border-black/10 rounded-lg px-3.5 py-2 text-black/80 placeholder:text-black/30 text-sm focus:outline-none focus:border-primary/50 transition-colors resize-none" autoFocus />
                               <button onClick={() => submitReply(q.id)} disabled={!replyContent.trim() || !replyName.trim()}
                                 className="bg-primary text-primary-foreground p-2.5 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shrink-0 self-end">
                                 <Send size={14} />
                               </button>
                             </div>
                             <button onClick={() => { setReplyingTo(null); setReplyContent(""); setReplyName(""); }}
-                              className="text-[10px] tracking-wider uppercase text-muted-foreground/40 hover:text-muted-foreground transition-colors">
+                              className="text-[10px] tracking-wider uppercase text-black/30 hover:text-black/60 transition-colors">
                               Cancelar
                             </button>
                           </div>
                         ) : (
                           <button onClick={() => setReplyingTo(q.id)}
-                            className="w-full p-3 text-xs tracking-wider text-muted-foreground/40 hover:text-primary hover:bg-background/20 transition-all border-t border-border/10">
+                            className="w-full p-3 text-xs tracking-wider text-black/30 hover:text-primary hover:bg-black/5 transition-all border-t border-black/5">
                             Responder...
                           </button>
                         )}
