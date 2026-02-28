@@ -143,9 +143,9 @@ const Notas = () => {
         <img
           src={heroBg}
           alt=""
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/75" />
       </div>
 
       <Navbar />
@@ -232,7 +232,7 @@ const Notas = () => {
           )}
 
           {/* Chat area - lighter background to stand out */}
-          <div className="bg-[hsl(220_15%_12%)] border border-border/40 rounded-2xl p-4 md:p-6 shadow-lg shadow-black/20">
+          <div className="bg-[hsl(220_10%_22%)] border border-[hsl(220_10%_30%)]/50 rounded-2xl p-4 md:p-6 shadow-2xl shadow-black/30">
             <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border/20">
               <MessageCircle size={16} className="text-primary/60" />
               <span className="text-xs tracking-widest uppercase text-muted-foreground/60">Conversaciones</span>
@@ -252,7 +252,7 @@ const Notas = () => {
               {questions.map((q) => (
                 <div
                   key={q.id}
-                  className="bg-[hsl(220_15%_16%)] border border-border/20 rounded-xl overflow-hidden hover:border-primary/20 transition-all duration-300"
+                  className="bg-[hsl(220_10%_26%)] border border-[hsl(220_10%_32%)]/30 rounded-xl overflow-hidden hover:border-primary/20 transition-all duration-300"
                 >
                   {/* Question bubble */}
                   <div
