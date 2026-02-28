@@ -75,13 +75,11 @@ const Notas = () => {
     e.preventDefault();
     setAdminError("");
     try {
-      // Test password with a dummy action check
       const res = await supabase.functions.invoke("forum-admin", {
         body: { action: "verify", password: adminPassword },
       });
-      // If password is wrong, we get 401
-      if (res.data?.error === "Contraseña incorrecta") {
-        setAdminError("Contraseña incorrecta");
+      if (res.error || res.data?.error) {
+        setAdminError(res.data?.error || "Contraseña incorrecta");
         return;
       }
       setIsAdmin(true);
