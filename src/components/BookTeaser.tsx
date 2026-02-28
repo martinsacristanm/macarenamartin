@@ -17,13 +17,13 @@ const BookTeaser = () => {
               "No todo lo que se pierde desaparece. A veces, lo perdido simplemente espera en otro lugar, en otro tiempo, en otra versión de nosotros mismos."
             </p>
             <div className="divider-gold my-4 max-w-[60px]" />
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-foreground leading-relaxed">
               Una novela sobre memoria, poder y las consecuencias de alterar lo que creemos inmutable.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-foreground leading-relaxed">
               Un viaje a los días previos al 23 de febrero de 1981.
             </p>
-            <p className="text-muted-foreground leading-relaxed font-display italic text-foreground/80">
+            <p className="text-foreground leading-relaxed font-display italic">
               ¿Y si la historia no fue como nos contaron?
             </p>
           </div>
