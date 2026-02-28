@@ -14,7 +14,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <BookTeaser />
-      <WritingsSection isAdmin={isAdmin} adminPassword={adminPassword} />
+      {/* WritingsSection eliminada temporalmente */}
       <AboutSection />
       <Footer />
     </div>
