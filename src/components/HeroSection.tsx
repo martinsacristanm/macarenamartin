@@ -8,7 +8,7 @@ const HeroSection = () => {
         <img
           src={heroBg}
           alt="Atmósfera literaria"
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
       </div>
