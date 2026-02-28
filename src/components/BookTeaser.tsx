@@ -18,11 +18,13 @@ const BookTeaser = () => {
             </p>
             <div className="divider-gold my-4 max-w-[60px]" />
             <p className="text-muted-foreground leading-relaxed">
-              Un viaje entre lo real y lo imaginado. Una exploración de las fronteras 
-              entre la memoria y el deseo, entre lo que fuimos y lo que pudimos ser.
+              Una novela sobre memoria, poder y las consecuencias de alterar lo que creemos inmutable.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Más pistas pronto. Suscríbete para no perderte nada.
+              Un viaje a los días previos al 23 de febrero de 1981.
+            </p>
+            <p className="text-muted-foreground leading-relaxed font-display italic text-foreground/80">
+              ¿Y si la historia no fue como nos contaron?
             </p>
           </div>
 
