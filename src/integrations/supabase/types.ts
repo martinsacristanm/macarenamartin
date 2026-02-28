@@ -67,6 +67,33 @@ export type Database = {
           },
         ]
       }
+      writings: {
+        Row: {
+          category: string
+          created_at: string
+          excerpt: string
+          id: string
+          title: string
+          year: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          excerpt: string
+          id?: string
+          title: string
+          year?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          title?: string
+          year?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
