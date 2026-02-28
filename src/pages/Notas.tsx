@@ -231,22 +231,28 @@ const Notas = () => {
             </form>
           )}
 
-          {/* Chat-style questions list */}
+          {/* Chat area - lighter background to stand out */}
+          <div className="bg-[hsl(220_15%_12%)] border border-border/40 rounded-2xl p-4 md:p-6 shadow-lg shadow-black/20">
+            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border/20">
+              <MessageCircle size={16} className="text-primary/60" />
+              <span className="text-xs tracking-widest uppercase text-muted-foreground/60">Conversaciones</span>
+            </div>
+
           {loading ? (
-            <div className="flex items-center justify-center py-20">
+            <div className="flex items-center justify-center py-16">
               <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
             </div>
           ) : questions.length === 0 ? (
-            <div className="text-center py-20">
-              <MessageCircle className="mx-auto mb-4 text-muted-foreground/30" size={40} />
-              <p className="text-muted-foreground text-sm">Aún no hay conversaciones.</p>
+            <div className="text-center py-16">
+              <MessageCircle className="mx-auto mb-4 text-muted-foreground/20" size={36} />
+              <p className="text-muted-foreground/50 text-sm">Aún no hay conversaciones.</p>
             </div>
           ) : (
             <div className="space-y-3">
               {questions.map((q) => (
                 <div
                   key={q.id}
-                  className="bg-card/40 backdrop-blur-sm border border-border/30 rounded-xl overflow-hidden hover:border-border/50 transition-all duration-300"
+                  className="bg-[hsl(220_15%_16%)] border border-border/20 rounded-xl overflow-hidden hover:border-primary/20 transition-all duration-300"
                 >
                   {/* Question bubble */}
                   <div
@@ -366,6 +372,7 @@ const Notas = () => {
               ))}
             </div>
           )}
+          </div>
         </div>
       </main>
       <Footer />
