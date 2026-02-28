@@ -13,11 +13,11 @@ const BookTeaser = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Teaser text */}
           <div className="space-y-6">
-            <div className="mb-4 text-center">
+            <div className="mb-4 text-center animate-fade-in" style={{ animationDuration: '0.8s' }}>
               <p className="font-display text-2xl md:text-3xl font-light tracking-wide text-foreground/70">
                 El Legado de
               </p>
-              <p className="font-display text-5xl md:text-7xl font-bold text-primary tracking-wider">
+              <p className="font-display text-5xl md:text-7xl font-bold text-primary tracking-wider animate-fade-in" style={{ animationDuration: '1.2s', animationDelay: '0.3s', animationFillMode: 'both' }}>
                 Auroa
               </p>
             </div>
