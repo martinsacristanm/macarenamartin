@@ -27,10 +27,10 @@ const AboutSection = () => {
               Contacto
             </p>
             <a 
-              href="mailto:hola@elautor.com" 
+              href="mailto:martinsacristanm@gmail.com" 
               className="inline-block mt-2 text-primary hover:text-gold transition-colors duration-300 font-display text-lg"
             >
-              hola@elautor.com
+              martinsacristanm@gmail.com
             </a>
           </div>
         </div>
