@@ -13,6 +13,15 @@ const BookTeaser = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Teaser text */}
           <div className="space-y-6">
+            <div className="mb-4">
+              <p className="font-display text-2xl md:text-3xl font-light tracking-wide text-foreground/70">
+                El Legado de
+              </p>
+              <p className="font-display text-5xl md:text-7xl font-bold text-primary tracking-wider">
+                Aurora
+              </p>
+            </div>
+            <div className="divider-gold my-4 max-w-[60px]" />
             <p className="text-secondary-foreground leading-relaxed text-lg font-light italic font-display">
               "No todo lo que se pierde desaparece. A veces, lo perdido simplemente espera en otro lugar, en otro tiempo, en otra versión de nosotros mismos."
             </p>
