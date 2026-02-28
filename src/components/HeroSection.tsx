@@ -23,7 +23,11 @@ const HeroSection = () => {
         </h1>
         <div className="divider-gold my-8 max-w-xs mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }} />
         <p className="text-lg md:text-xl text-secondary-foreground leading-relaxed font-light max-w-xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.8s' }}>
-          Hay historias que no se eligen. Se imponen, se susurran en la oscuridad, y exigen ser contadas. Esta es una de ellas.
+          No viajaron para cambiar la historia.
+          <br /><br />
+          Viajaron para observarla.
+          <br /><br />
+          Pero hay fechas que no se dejan mirar sin consecuencias.
         </p>
         <a
           href="#libro"
