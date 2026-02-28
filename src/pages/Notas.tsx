@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { MessageCircle, Send, ChevronDown, ChevronUp, Trash2, Lock, LogOut } from "lucide-react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 interface Reply {
   id: string;
@@ -28,7 +29,6 @@ const Notas = () => {
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Admin state
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
@@ -118,7 +118,7 @@ const Notas = () => {
   };
 
   const submitReply = async (questionId: string) => {
-    if (!replyContent.trim()) return;
+    if (!replyContent.trim() || !replyName.trim()) return;
 
     await supabase.from("forum_replies").insert({
       question_id: questionId,
@@ -137,18 +137,31 @@ const Notas = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      {/* Background matching main page but lighter */}
+      <div className="fixed inset-0 -z-10">
+        <img
+          src={heroBg}
+          alt=""
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background/95" />
+      </div>
+
       <Navbar />
       <main className="pt-24 pb-16 px-6">
-        <div className="container mx-auto max-w-3xl">
-          <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4">Comunidad</p>
-            <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-4">Notas</h1>
-            <div className="divider-gold my-6 max-w-[100px] mx-auto" />
-            <p className="text-foreground/70">Un espacio para compartir ideas, preguntas y reflexiones.</p>
+        <div className="container mx-auto max-w-2xl">
+          {/* Header */}
+          <div className="text-center mb-10">
+            <p className="text-sm tracking-[0.3em] uppercase text-primary mb-3">Comunidad</p>
+            <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-3">Notas</h1>
+            <div className="divider-gold my-5 max-w-[80px] mx-auto" />
+            <p className="text-foreground/60 text-sm max-w-md mx-auto">
+              Un espacio abierto para compartir ideas, preguntas y reflexiones.
+            </p>
           </div>
 
-          {/* Admin login toggle - discrete icon at bottom right */}
+          {/* Admin login toggle */}
           {!isAdmin && (
             <button
               onClick={() => setShowAdminLogin(!showAdminLogin)}
@@ -189,7 +202,7 @@ const Notas = () => {
 
           {/* Admin bar */}
           {isAdmin && (
-            <div className="mb-6 flex items-center justify-between bg-primary/10 border border-primary/20 rounded-sm px-4 py-2">
+            <div className="mb-4 flex items-center justify-between bg-primary/10 border border-primary/20 rounded-lg px-4 py-2">
               <span className="text-xs text-primary tracking-wider uppercase">Modo admin activo</span>
               <button onClick={() => { setIsAdmin(false); setAdminPassword(""); }} className="text-muted-foreground hover:text-foreground transition-colors">
                 <LogOut size={14} />
@@ -197,87 +210,106 @@ const Notas = () => {
             </div>
           )}
 
-          {/* New question form - only for admin */}
+          {/* New question form - admin only */}
           {isAdmin && (
-            <form onSubmit={submitQuestion} className="mb-12 bg-card border border-border rounded-sm p-6 space-y-4">
-              <h3 className="font-display text-lg text-foreground tracking-wide">Nueva pregunta</h3>
+            <form onSubmit={submitQuestion} className="mb-8 bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-5 space-y-3">
+              <h3 className="font-display text-base text-foreground tracking-wide">Nueva pregunta</h3>
               <textarea
                 placeholder="¿Qué quieres preguntar a la comunidad?"
                 value={newQuestion}
                 onChange={(e) => setNewQuestion(e.target.value)}
-                rows={3}
-                className="w-full bg-background border border-border rounded-sm px-4 py-3 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+                rows={2}
+                className="w-full bg-background/50 border border-border/50 rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors resize-none"
               />
               <button
                 type="submit"
                 disabled={!newQuestion.trim()}
-                className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-sm text-sm tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-lg text-xs tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                <Send size={14} /> Publicar
+                <Send size={13} /> Publicar
               </button>
             </form>
           )}
 
-          {/* Questions list */}
+          {/* Chat-style questions list */}
           {loading ? (
-            <p className="text-center text-muted-foreground">Cargando...</p>
+            <div className="flex items-center justify-center py-20">
+              <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+            </div>
           ) : questions.length === 0 ? (
-            <p className="text-center text-muted-foreground">Aún no hay preguntas.</p>
+            <div className="text-center py-20">
+              <MessageCircle className="mx-auto mb-4 text-muted-foreground/30" size={40} />
+              <p className="text-muted-foreground text-sm">Aún no hay conversaciones.</p>
+            </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {questions.map((q) => (
-                <div key={q.id} className="bg-card border border-border rounded-sm overflow-hidden">
-                  {/* Question */}
+                <div
+                  key={q.id}
+                  className="bg-card/40 backdrop-blur-sm border border-border/30 rounded-xl overflow-hidden hover:border-border/50 transition-all duration-300"
+                >
+                  {/* Question bubble */}
                   <div
-                    className="p-6 cursor-pointer hover:bg-card/80 transition-colors"
+                    className="p-5 cursor-pointer group"
                     onClick={() => setExpandedQuestion(expandedQuestion === q.id ? null : q.id)}
                   >
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex-1">
-                        <p className="text-foreground leading-relaxed">{q.question}</p>
-                        <p className="text-xs text-muted-foreground mt-2">
+                    <div className="flex justify-between items-start gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-foreground leading-relaxed text-[15px]">{q.question}</p>
+                        <p className="text-xs text-muted-foreground/60 mt-2">
                           {q.author_name} · {formatDate(q.created_at)}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground shrink-0">
+                      <div className="flex items-center gap-2 text-muted-foreground/50 shrink-0 group-hover:text-muted-foreground transition-colors">
                         {isAdmin && (
                           <button
                             onClick={(e) => { e.stopPropagation(); deleteQuestion(q.id); }}
-                            className="text-muted-foreground hover:text-destructive transition-colors p-1"
+                            className="hover:text-destructive transition-colors p-1"
                             title="Eliminar pregunta"
                           >
-                            <Trash2 size={14} />
+                            <Trash2 size={13} />
                           </button>
                         )}
-                        <MessageCircle size={14} />
-                        <span className="text-xs">{q.forum_replies?.length || 0}</span>
+                        <div className="flex items-center gap-1">
+                          <MessageCircle size={13} />
+                          <span className="text-xs">{q.forum_replies?.length || 0}</span>
+                        </div>
                         {expandedQuestion === q.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                       </div>
                     </div>
                   </div>
 
-                  {/* Replies */}
+                  {/* Replies - chat style */}
                   {expandedQuestion === q.id && (
-                    <div className="border-t border-border">
+                    <div className="border-t border-border/20">
                       {q.forum_replies?.length > 0 && (
-                        <div className="divide-y divide-border">
+                        <div className="p-4 space-y-3">
                           {q.forum_replies
                             .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
                             .map((r) => (
-                              <div key={r.id} className="px-6 py-4 bg-background/50 flex justify-between items-start gap-4">
-                                <div className="flex-1">
-                                  <p className="text-foreground text-sm leading-relaxed">{r.content}</p>
-                                  <p className="text-xs text-muted-foreground mt-1">
-                                    {r.author_name} · {formatDate(r.created_at)}
+                              <div key={r.id} className="flex gap-3 items-start group/reply">
+                                {/* Avatar circle */}
+                                <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5">
+                                  <span className="text-[10px] font-medium text-foreground/70 uppercase">
+                                    {r.author_name.charAt(0)}
+                                  </span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="bg-secondary/40 rounded-lg rounded-tl-sm px-3.5 py-2.5">
+                                    <p className="text-xs font-medium text-primary/80 mb-1">{r.author_name}</p>
+                                    <p className="text-foreground/90 text-sm leading-relaxed">{r.content}</p>
+                                  </div>
+                                  <p className="text-[10px] text-muted-foreground/40 mt-1 px-1">
+                                    {formatDate(r.created_at)}
                                   </p>
                                 </div>
                                 {isAdmin && (
                                   <button
                                     onClick={() => deleteReply(r.id)}
-                                    className="text-muted-foreground hover:text-destructive transition-colors p-1 shrink-0"
+                                    className="text-muted-foreground/20 hover:text-destructive transition-colors p-1 shrink-0 opacity-0 group-hover/reply:opacity-100"
                                     title="Eliminar respuesta"
                                   >
-                                    <Trash2 size={12} />
+                                    <Trash2 size={11} />
                                   </button>
                                 )}
                               </div>
@@ -285,47 +317,47 @@ const Notas = () => {
                         </div>
                       )}
 
-                      {/* Reply form - open to everyone */}
+                      {/* Reply input - chat style */}
                       {replyingTo === q.id ? (
-                        <div className="p-4 bg-background/30 space-y-3">
+                        <div className="p-4 pt-2 space-y-2">
                           <input
                             type="text"
                             placeholder="Tu nombre"
                             required
                             value={replyName}
                             onChange={(e) => setReplyName(e.target.value)}
-                            className="w-full bg-background border border-border rounded-sm px-3 py-2 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
-                          />
-                          <textarea
-                            placeholder="Tu respuesta..."
-                            value={replyContent}
-                            onChange={(e) => setReplyContent(e.target.value)}
-                            rows={2}
-                            className="w-full bg-background border border-border rounded-sm px-3 py-2 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-                            autoFocus
+                            className="w-full bg-background/40 border border-border/30 rounded-lg px-3.5 py-2 text-foreground placeholder:text-muted-foreground/50 text-sm focus:outline-none focus:border-primary/40 transition-colors"
                           />
                           <div className="flex gap-2">
+                            <textarea
+                              placeholder="Escribe tu respuesta..."
+                              value={replyContent}
+                              onChange={(e) => setReplyContent(e.target.value)}
+                              rows={1}
+                              className="flex-1 bg-background/40 border border-border/30 rounded-lg px-3.5 py-2 text-foreground placeholder:text-muted-foreground/50 text-sm focus:outline-none focus:border-primary/40 transition-colors resize-none"
+                              autoFocus
+                            />
                             <button
                               onClick={() => submitReply(q.id)}
                               disabled={!replyContent.trim() || !replyName.trim()}
-                              className="flex items-center gap-1 bg-primary text-primary-foreground px-4 py-1.5 rounded-sm text-xs tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-40"
+                              className="bg-primary text-primary-foreground p-2.5 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shrink-0 self-end"
                             >
-                              <Send size={12} /> Responder
-                            </button>
-                            <button
-                              onClick={() => { setReplyingTo(null); setReplyContent(""); setReplyName(""); }}
-                              className="px-4 py-1.5 text-xs tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                              Cancelar
+                              <Send size={14} />
                             </button>
                           </div>
+                          <button
+                            onClick={() => { setReplyingTo(null); setReplyContent(""); setReplyName(""); }}
+                            className="text-[10px] tracking-wider uppercase text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+                          >
+                            Cancelar
+                          </button>
                         </div>
                       ) : (
                         <button
                           onClick={() => setReplyingTo(q.id)}
-                          className="w-full p-3 text-xs tracking-wider uppercase text-muted-foreground hover:text-primary hover:bg-background/30 transition-colors"
+                          className="w-full p-3 text-xs tracking-wider text-muted-foreground/40 hover:text-primary hover:bg-background/20 transition-all border-t border-border/10"
                         >
-                          Responder
+                          Responder...
                         </button>
                       )}
                     </div>
