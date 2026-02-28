@@ -13,12 +13,12 @@ const BookTeaser = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Teaser text */}
           <div className="space-y-6">
-            <div className="mb-4">
+            <div className="mb-4 text-center">
               <p className="font-display text-2xl md:text-3xl font-light tracking-wide text-foreground/70">
                 El Legado de
               </p>
               <p className="font-display text-5xl md:text-7xl font-bold text-primary tracking-wider">
-                Aurora
+                Auroa
               </p>
             </div>
             <div className="divider-gold my-4 max-w-[60px]" />
