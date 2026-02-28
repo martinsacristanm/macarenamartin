@@ -19,7 +19,7 @@ const HeroSection = () => {
           Próximamente
         </p>
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-tight mb-6 glow-gold animate-fade-in-up opacity-0 text-gradient-gold">
-          Un nuevo capítulo comienza
+          Un nuevo viaje comienza
         </h1>
         <div className="divider-gold my-8 max-w-xs mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }} />
         <p className="text-lg md:text-xl text-secondary-foreground leading-relaxed font-light max-w-xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.8s' }}>
