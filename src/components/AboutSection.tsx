@@ -11,12 +11,12 @@ const AboutSection = () => {
         </div>
 
         <div className="space-y-6 text-center">
-          <p className="text-secondary-foreground leading-relaxed text-lg font-light">
+          <p className="text-secondary-foreground leading-relaxed text-xl md:text-2xl font-light">
             He vivido siempre entre dos mundos:<br />
             el de las ideas que no me dejan dormir<br />
             y el de las palabras que intento usar para atraparlas.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed text-lg md:text-xl">
             Durante años escribí sin mostrarlo.<br />
             Ahora he decidido compartir lo que antes guardaba.
           </p>
