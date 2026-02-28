@@ -125,7 +125,7 @@ const Notas = () => {
     await supabase.from("forum_replies").insert({
       question_id: questionId,
       content: replyContent.trim(),
-      author_name: replyName.trim() || "Anónimo",
+      author_name: replyName.trim(),
     });
 
     setReplyContent("");
@@ -292,7 +292,8 @@ const Notas = () => {
                         <div className="p-4 bg-background/30 space-y-3">
                           <input
                             type="text"
-                            placeholder="Tu nombre (opcional)"
+                            placeholder="Tu nombre"
+                            required
                             value={replyName}
                             onChange={(e) => setReplyName(e.target.value)}
                             className="w-full bg-background border border-border rounded-sm px-3 py-2 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
@@ -308,7 +309,7 @@ const Notas = () => {
                           <div className="flex gap-2">
                             <button
                               onClick={() => submitReply(q.id)}
-                              disabled={!replyContent.trim()}
+                              disabled={!replyContent.trim() || !replyName.trim()}
                               className="flex items-center gap-1 bg-primary text-primary-foreground px-4 py-1.5 rounded-sm text-xs tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-40"
                             >
                               <Send size={12} /> Responder
