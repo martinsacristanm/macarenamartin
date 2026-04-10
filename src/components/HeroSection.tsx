@@ -1,17 +1,6 @@
-import heroBg from "@/assets/hero-bg.jpg";
-
 const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Atmósfera literaria"
-          className="w-full h-full object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background" />
-      </div>
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
