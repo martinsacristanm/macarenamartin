@@ -10,7 +10,7 @@ const HeroSection = () => {
           alt="Atmósfera literaria"
           className="w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background" />
       </div>
 
       {/* Content */}
