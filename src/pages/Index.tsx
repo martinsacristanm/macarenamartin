@@ -14,7 +14,7 @@ const Index = () => {
       {/* Global background image */}
       <div className="fixed inset-0 -z-10">
         <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/50" />
+        <div className="absolute inset-0 bg-background/30" />
       </div>
       <Navbar />
       <HeroSection />
