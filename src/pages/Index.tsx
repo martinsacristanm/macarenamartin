@@ -13,8 +13,8 @@ const Index = () => {
     <div className="min-h-screen relative">
       {/* Global background image */}
       <div className="fixed inset-0 -z-10">
-        <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/30" />
+        <img src={heroBg} alt="" className="w-full h-full object-cover object-top" />
+        <div className="absolute inset-0 bg-background/20" />
       </div>
       <Navbar />
       <HeroSection />
