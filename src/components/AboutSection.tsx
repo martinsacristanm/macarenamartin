@@ -20,6 +20,9 @@ const AboutSection = () => {
             Durante años escribí sin mostrarlo.<br />
             Ahora he decidido compartir lo que antes guardaba.
           </p>
+          <p className="text-primary/80 tracking-[0.15em] uppercase text-sm md:text-base font-display mt-2">
+            Hija y hermana de escritores
+          </p>
           
           <div className="pt-8">
             <div className="divider-gold my-8 max-w-[60px] mx-auto" />
